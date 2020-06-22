@@ -1,0 +1,1 @@
+WScript.CreateObject("WScript.Shell").Run """", 0, False

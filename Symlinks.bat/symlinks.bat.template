@@ -1,0 +1,30 @@
+@ECHO OFF
+SETLOCAL ENABLEEXTENSIONS
+TITLE Symlinks for APPNAME
+
+CHOICE /C 12 /N /M "[1] = create/repair symlinks, [2] = remove symlinks : "
+
+GOTO CHOICE_%ERRORLEVEL%
+
+:CHOICE_1
+REM ==========
+SET REMOTE=
+SET LOCAL=
+IF NOT EXIST %LOCAL% (MD "%LOCAL%")
+IF EXIST %REMOTE% (ECHO %REMOTE% already exists.) ELSE (MKLINK /D %REMOTE% %LOCAL%)
+REM ==========
+
+GOTO CHOICE_0
+
+:CHOICE_2
+REM ==========
+SET REMOTE=
+RD %REMOTE%
+ECHO Removed %REMOTE%
+REM ==========
+
+GOTO CHOICE_0
+
+:CHOICE_0
+ECHO.
+PAUSE
